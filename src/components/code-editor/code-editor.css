@@ -1,0 +1,6 @@
+@import "../../css/units.css";
+@import "../../css/colors.css";
+
+.code-editor * {
+    box-sizing: border-box;
+}

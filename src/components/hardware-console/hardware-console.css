@@ -1,0 +1,164 @@
+@import "../../css/units.css";
+@import "../../css/colors.css";
+@import "../../css/z-index.css";
+
+.hardware-console-wrapper {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+}
+
+.console-array {
+    height: 260px;
+    overflow:auto;
+    word-break:break-all;
+	white-space: break-spaces;
+    user-select: text;
+    color: $text-primary;
+    font-family: "Courier New","Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: $menu-bar-standard-font-size;
+}
+
+.button:hover {
+    cursor: pointer;
+}
+
+.pause-button {
+    position: absolute;
+    top: -1px;
+    right: -1px;
+    border: 1px solid $ui-black-transparent;
+    background-color: $ui-white;
+    height: 34px;
+    width: 34px;
+    border-radius: 0 0.5rem 0 0;
+    outline: none;
+}
+
+.clean-button {
+    position: absolute;
+    top: calc(34px - 2px);
+    right:  -1px;
+    border: 1px solid $ui-black-transparent;
+    background-color: $ui-white;
+    height: 34px;
+    width: 34px;
+    border-radius: 0 0 0 0.5rem;
+    outline: none;
+}
+
+.pause-button:active,
+.clean-button:active{
+    background-color: $ui-black-transparent;
+}
+
+.clean-icon {
+    height: 20px;
+    width: 20px;
+}
+
+.pause-icon{
+    height: 20px;
+    width: 20px;
+}
+
+.console-menu-warpper {
+    display: flex;
+    flex-wrap: nowrap;
+    flex-direction: row;
+    justify-content: flex-end;
+    height: 42px;
+    background-color: $ui-white;
+    align-items: center;
+    border-top: 1px solid $ui-black-transparent;
+}
+
+.console-input {
+    flex-grow: 1;
+    height: 26px;
+    margin-left: $space;
+    border: 1px solid $ui-black-transparent;
+    box-sizing: border-box;
+    border-radius: 0.5rem;
+    background-color: $ui-secondary;
+    overflow:hidden;
+}
+
+.console-input:focus {
+    outline:none;
+    border: 1px solid $ui-transparent;
+    -webkit-box-shadow: 0 0 0 calc($space * .25) $ui-modal-overlay;
+    box-shadow: 0 0 0 calc($space * .25) $ui-modal-overlay;
+    color: $text-primary;
+}
+
+.send-button {
+    padding: 0.36rem 0.75rem;
+    border-radius: 0.5rem;
+    background: $motion-primary;
+    color: white;
+    font-weight: 600;
+    font-size: 0.75rem;
+    margin-left: 0.5rem;
+    margin-right: 0.5rem;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    white-space:nowrap;
+}
+
+.send-button:active{
+    opacity: 0.5;
+}
+
+.setting-button {
+    border: none;
+    outline: none;
+    cursor: pointer;
+    background-color: $ui-white;
+    padding: 0;
+    margin-right: $space;
+    white-space: nowrap;
+    position: relative;
+}
+
+.setting-icon {
+    height: 26px;
+    width: 26px;
+}
+
+.menu-bar-menu {
+    z-index: $z-index-menu-bar;
+}
+
+.menu {
+    background-color: $ui-white;
+    color: $text-primary;
+    bottom: 36px;
+    min-width: 0px;
+    text-align: left;
+}
+
+.menu span {
+    margin-right: 5px;
+    vertical-align: middle;
+}
+
+.menu input {
+    vertical-align: middle;
+    margin: 0;
+}
+
+.menu select {
+    border: 1px solid $text-primary;
+    color: $text-primary;
+}
+
+.menu select:focus {
+    outline:none;
+    border: 1px solid $ui-transparent;
+    -webkit-box-shadow: 0 0 0 calc($space * .25) $ui-modal-overlay;
+    box-shadow: 0 0 0 calc($space * .25) $ui-modal-overlay;
+    color: $text-primary;
+}
+
