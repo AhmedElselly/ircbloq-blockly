@@ -13,6 +13,9 @@ var autoprefixer = require('autoprefixer');
 var postcssVars = require('postcss-simple-vars');
 var postcssImport = require('postcss-import');
 
+const TerserPlugin = require('terser-webpack-plugin');
+
+
 const STATIC_PATH = process.env.STATIC_PATH || '/static';
 const MONACO_DIR = path.resolve(__dirname, './node_modules/monaco-editor');
 
@@ -140,6 +143,11 @@ module.exports = [
             ])
         },
         optimization: {
+            minimizer: [
+                new TerserPlugin({
+                  cache: false,
+                }),
+            ],
             splitChunks: {
                 chunks: 'all',
                 name: 'lib.min'
