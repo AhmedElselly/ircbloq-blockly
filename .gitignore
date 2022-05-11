@@ -10,11 +10,14 @@ npm-*
 /coverage
 
 # Build
-/build
-/dist
-/.opt-in
+# /build
+# /dist
+# /.opt-in
 
 # Generated translation files
 /translations
 /locale
 *.bak
+
+# src
+/src
