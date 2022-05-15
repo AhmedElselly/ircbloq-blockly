@@ -198,6 +198,7 @@ class MenuBar extends React.Component {
         super(props);
         this.state = {
             show: false,
+            title: '',
             email: '',
             password: '',
             user: false,
@@ -518,12 +519,17 @@ class MenuBar extends React.Component {
     }
 
     handleImageChange = e => {
-        this.setState({image: e.target.files[0]});
+        if(e.target.name === 'title'){
+            this.setState({title: e.target.value});
+        } else {
+            this.setState({image: e.target.files[0]});    
+        }        
     }
 
     handleImageSubmit = e => {
         e.preventDefault();
         const formData = new FormData();
+        formData.append('title', this.state.title);
         formData.append('image', this.state.image);
         const userId = isAuthenticated().user._id;
         const {token} = isAuthenticated();
@@ -667,6 +673,10 @@ class MenuBar extends React.Component {
                         <h2 className={styles.loginHeader}>Submit Image</h2>
                         <span onClick={() => this.setState({showForm: false})} className={styles.closeBtn}>X</span>
                         <form onSubmit={this.handleImageSubmit} className={styles.form}>
+                            <div className={styles.formGroup}>
+                                <label className={styles.label}>Title</label>
+                                <input className={styles.input} type='text' name='title' value={this.state.title} onChange={this.handleImageChange}/>
+                            </div>                            
                             <div className={styles.formGroup}>
                                 <label className={styles.label}>Image</label>
                                 <input className={styles.input} type='file' name='image' onChange={this.handleImageChange}/>
