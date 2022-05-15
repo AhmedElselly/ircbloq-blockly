@@ -17,6 +17,7 @@ import {getAllCourses} from '../../actions/courseApi';
 import {isAuthenticated} from '../../actions/userApi';
 import {read} from '../../actions/enrolApi';
 
+
 const messages = defineMessages({
     filterPlaceholder: {
         id: 'gui.library.filterPlaceholder',
@@ -57,25 +58,42 @@ class LibraryComponent extends React.Component {
             data: []
         };
     }
+
+    setTimer = () => {
+        if(this.state.showMessage){
+            setTimeout(() => {
+                console.log('this', this)
+                this.setState({message: ''});
+                this.setState({showMessage: false});
+                
+            }, 3000);
+        }
+    }
     componentDidMount () {
         // Allow the spinner to display before loading the content
         this.getFilteredData();
+        
         setTimeout(() => {
             this.setState({loaded: true});
         });
+        
+        
         if (this.props.setStopHandler) this.props.setStopHandler(this.handlePlayingEnd);
-        if(this.state.showMessage){
-            // setTimeout(() => {
-            //     this.setState({showMessage: false});
-            // }, 5000);
-        }
+        
     }
+   
     componentDidUpdate (prevProps, prevState) {
         if (prevState.filterQuery !== this.state.filterQuery ||
             prevState.selectedTag !== this.state.selectedTag) {
             this.scrollToTop();
         }
+        if(this.state.showMessage){
+            setTimeout(() => this.setState({showMessage: false}), 5000)
+        }
     }
+
+    
+
     handleSelect (index, _id) {
         
         const userId = isAuthenticated().user._id;
@@ -190,46 +208,7 @@ class LibraryComponent extends React.Component {
         this.filteredDataRef = ref;
     }
 
-    // getDevices = () => {
-    //     return this.state.data?.map((dataItem, index) => {
-    //         console.log(dataItem)
-    //         return (
-    //             <LibraryItem
-    //                 author={dataItem.author}
-    //                 bluetoothRequired={dataItem.bluetoothRequired}
-    //                 serialportRequired={dataItem.serialportRequired}
-    //                 programMode={dataItem.programMode}
-    //                 programLanguage={dataItem.programLanguage}
-    //                 collaborator={dataItem.collaborator}
-    //                 description={dataItem.description}
-    //                 disabled={dataItem.disabled}
-    //                 extensionId={dataItem.extensionId}
-    //                 deviceId={dataItem._id}
-    //                 featured={dataItem.featured}
-    //                 helpLink={dataItem.helpLink}
-    //                 hidden={dataItem.hidden}
-    //                 iconMd5={dataItem.costumes ? dataItem.costumes[0].md5ext : dataItem.md5ext}
-    //                 iconRawURL={dataItem.rawURL}
-    //                 icons={dataItem.costumes}
-    //                 id={index}
-    //                 insetIconURL={dataItem.insetIconURL}
-    //                 internetConnectionRequired={dataItem.internetConnectionRequired}
-    //                 isLoaded={dataItem.isLoaded}
-    //                 isUnloadble={this.props.isUnloadble}
-    //                 isPlaying={this.state.playingItem === index}
-    //                 key={typeof dataItem.name === 'string' ? dataItem.name : dataItem.rawURL}
-    //                 learnMore={dataItem.learnMore}
-    //                 manufactor={dataItem.manufactor}
-    //                 name={dataItem.name}
-    //                 showPlayButton={this.props.showPlayButton}
-    //                 onMouseEnter={this.handleMouseEnter}
-    //                 onMouseLeave={this.handleMouseLeave}
-    //                 onSelect={this.handleSelect}
-    //                 version={dataItem.version}
-    //             />
-    //     )});
-    // }
-
+    
     handleCloseMessage = () => {
         this.setState({showMessage: false});
     }

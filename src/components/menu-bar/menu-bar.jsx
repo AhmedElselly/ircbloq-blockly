@@ -248,6 +248,14 @@ class MenuBar extends React.Component {
         this.props.vm.removeListener('PERIPHERAL_DISCONNECTED', this.props.onDisconnect);
         this.props.vm.removeListener('PROGRAM_MODE_UPDATE', this.handleProgramModeUpdate);
     }
+    componentDidUpdate(){
+         if(this.state.showSuccessMessage){
+            setTimeout(() => this.setState({showSuccessMessage: false}), 5000)
+        } else if(this.state.error){
+            setTimeout(() => this.setState({error: false}), 5000)
+        } 
+        
+    }
     handleClickNew () {
         // if the project is dirty, and user owns the project, we will autosave.
         // but if they are not logged in and can't save, user should consider
