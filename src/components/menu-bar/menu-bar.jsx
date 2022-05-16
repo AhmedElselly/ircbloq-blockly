@@ -250,7 +250,7 @@ class MenuBar extends React.Component {
     }
     componentDidUpdate(){
          if(this.state.showSuccessMessage){
-            setTimeout(() => this.setState({showSuccessMessage: false}), 5000)
+            setTimeout(() => this.setState({showSuccessMessage: false, showForm: false}), 5000)
         } else if(this.state.error){
             setTimeout(() => this.setState({error: false}), 5000)
         } 
