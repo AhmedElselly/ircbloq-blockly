@@ -545,6 +545,7 @@ class MenuBar extends React.Component {
         if(isAuthenticated()){
             create(formData, userId, token).then(res => {
                 console.log(res.data);
+                this.setState({showForm: false});
                 this.setState({successMessage: res.data.message});
                 this.setState({showSuccessMessage: true});
                 this.setState({submitted: true});
@@ -665,14 +666,15 @@ class MenuBar extends React.Component {
                         </form>
                     </div>
                 </div>}
+                {this.state.showSuccessMessage && (
+                    <div className={styles.showMessage}>
+                        
+                        {this.state.successMessage}
+                    </div>
+                )}
                 {this.state.showForm && (
                     <div className={styles.loginForm}>
-                        {this.state.showSuccessMessage && (
-                            <div className={styles.showMessage}>
-                                
-                                {this.state.successMessage}
-                            </div>
-                        )}
+                        
                         {this.state.error && (
                             <div className={styles.showMessage}>
                                 
