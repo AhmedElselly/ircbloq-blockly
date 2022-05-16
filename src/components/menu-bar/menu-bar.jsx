@@ -207,7 +207,8 @@ class MenuBar extends React.Component {
             errorMessage: '',
             error: false,
             showSuccessMessage: false,
-            successMessage: ''
+            successMessage: '',
+            submitted: false
         }
 
         bindAll(this, [
@@ -250,7 +251,7 @@ class MenuBar extends React.Component {
     }
     componentDidUpdate(){
          if(this.state.showSuccessMessage){
-            setTimeout(() => this.setState({showSuccessMessage: false, showForm: false}), 5000)
+            setTimeout(() => this.setState({showSuccessMessage: false, showForm: false, submitted: false}), 5000)
         } else if(this.state.error){
             setTimeout(() => this.setState({error: false}), 5000)
         } 
@@ -546,6 +547,7 @@ class MenuBar extends React.Component {
                 console.log(res.data);
                 this.setState({successMessage: res.data.message});
                 this.setState({showSuccessMessage: true});
+                this.setState({submitted: true});
             }).catch(err => {
                 console.log(err.response);
                 this.setState({errorMessage: err.response.data.error});
@@ -689,7 +691,8 @@ class MenuBar extends React.Component {
                                 <label className={styles.label}>Image</label>
                                 <input className={styles.input} type='file' name='image' onChange={this.handleImageChange}/>
                             </div>                            
-                            <button className={styles.btn}>Submit</button>
+                            {!this.state.submitted && <button className={styles.btn}>Submit</button>}
+                            {this.state.submitted && <button disabled className={styles.btn}>Submitted</button>}
                         </form>
                     </div>
                 </div>

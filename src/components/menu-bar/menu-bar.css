@@ -348,6 +348,12 @@
     color: white;
 }
 
+.btn:disabled,
+.btn[disabled]{
+  /* border: 1px solid #999999; */
+  background-color: #7c5bb6;
+  color: #666666;
+}
 .closeBtn {
     position: absolute;
     top: 50px;
