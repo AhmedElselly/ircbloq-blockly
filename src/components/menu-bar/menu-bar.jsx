@@ -540,6 +540,7 @@ class MenuBar extends React.Component {
         const formData = new FormData();
         formData.append('title', this.state.title);
         formData.append('image', this.state.image);
+        this.setState({submitted: true});
         const userId = isAuthenticated().user._id;
         const {token} = isAuthenticated();
         if(isAuthenticated()){
@@ -548,18 +549,18 @@ class MenuBar extends React.Component {
                 this.setState({showForm: false});
                 this.setState({successMessage: res.data.message});
                 this.setState({showSuccessMessage: true});
-                this.setState({submitted: true});
+                
             }).catch(err => {
                 console.log(err.response);
                 this.setState({errorMessage: err.response.data.error});
-                this.setState({error: true});
-    
+                this.setState({error: true, submitted: false});
+                
                 console.log(this.state)
             })
         } else {
             this.setState({errorMessage: 'Should login to submit!'});
             this.setState({error: true});
-
+            
             console.log(this.state)
         }
         
