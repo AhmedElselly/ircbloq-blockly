@@ -518,6 +518,7 @@ class MenuBar extends React.Component {
                 console.log('user logged in')
                 this.setState({show: false, user: true});
             })
+            this.setState({email: '', password: ''});
         }).catch(err => {
             console.log(err.response);
             this.setState({errorMessage: err.response.data.error});
@@ -549,6 +550,7 @@ class MenuBar extends React.Component {
                 this.setState({showForm: false});
                 this.setState({successMessage: res.data.message});
                 this.setState({showSuccessMessage: true});
+                this.setState({title: ''});
                 
             }).catch(err => {
                 console.log(err.response);
@@ -928,6 +930,11 @@ class MenuBar extends React.Component {
                     )}
                 </div>
                 <div className={styles.tailMenu}>
+                    {isAuthenticated() && (
+                        <div>
+                            Logged in as {isAuthenticated().user.name}
+                        </div>
+                    )}
                     {isAuthenticated() && <div
                         className={classNames(styles.menuBarItem, styles.hoverable)}
                         onMouseUp={this.handleScreenshot}
