@@ -571,6 +571,10 @@ class MenuBar extends React.Component {
     handleCloseMessage = () => {
         this.setState({error: false});
     }
+
+    handleForgotPassword = () => {
+        window.location = 'https://irc-dashboard.herokuapp.com/forgot-password'
+    }
     
     render () {
         const saveNowMessage = (
@@ -664,6 +668,9 @@ class MenuBar extends React.Component {
                             <div className={styles.formGroup}>
                                 <label className={styles.label}>Password</label>
                                 <input className={styles.input} type='password' name='password' value={this.state.password} onChange={this.handleChange}/>
+                            </div>
+                            <div className={styles.forgotPassword} onClick={this.handleForgotPassword}>
+                                <span>Forgot your password?</span>
                             </div>
                             <button className={styles.btn}>Login</button>
                         </form>

@@ -363,6 +363,11 @@
 
 }
 
+.forgotPassword {
+    cursor: pointer;
+    margin-bottom: 10px;
+}
+
 
 .showMessage {
     /* background-color: $motion-primary; */
