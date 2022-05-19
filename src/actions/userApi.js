@@ -2,7 +2,8 @@ import axios from 'axios';
 // import cookie from 'js-cookie';
 import "regenerator-runtime/runtime.js";
 
-const url = 'https://ircbackend.herokuapp.com';
+// const url = 'https://ircbackend.herokuapp.com';
+const url = 'http://64.227.74.120';
 
 export const login = async (email, password) => {
     const res = await axios.post(`${url}/api/users/login`, {
